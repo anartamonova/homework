@@ -36,23 +36,23 @@ class AlarmClock {
         }
     }
     if(checkClock.timerId === null) {
-        checkClock.timerId === setInterval(this.alarmCollection.forEach(alarm => AlarmClock(alarm)));
+      checkClock.timerId === setInterval(this.alarmCollection.forEach(alarm => AlarmClock(alarm)));
     }
   }
   stop() {
     if(this.timerId === null) {
-        clearInterval(this.timerId);
-        this.timerId === null;
+      clearInterval(this.timerId);
+      this.timerId === null;
     }
 }
 
 printAlarms() {
-    this.alarmCollection.forEach(item=> console.log(`id: ${item.id} time: ${item.time}`));
+  this.alarmCollection.forEach(item=> console.log(`id: ${item.id} time: ${item.time}`));
 }
 
 clearAlarms() {
-    this.stop();
-    this.alarmCollection = [];
+  this.stop();
+  this.alarmCollection = [];
 }
 
 }
