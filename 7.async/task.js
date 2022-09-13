@@ -30,29 +30,29 @@ class AlarmClock {
   }
   
   start(){
-    let checkClock = (alarmTime) => {
-        if (alarmTime.time == this.getCurrentFormattedTime()) {
-          return this.alarmCollection.callback();
+    function checkClock(alarmTime) {
+        if (alarmTime.time === this.getCurrentFormattedTime()) {
+            alarmTime.callback();
         }
     }
-    if(checkClock.timerId === null) {
-      checkClock.timerId === setInterval(this.alarmCollection.forEach(alarm => AlarmClock(alarm)));
+    checkClock = checkClock.bind(this);
+      this.timerId = setInterval(() => this.alarmCollection.forEach((alarm) => checkClock(alarm)), 500);
+    }
+  
+  stop() {
+    if(this.timerId !== undefined) {
+      clearInterval(this.timerId);
+      this.timerId = null;
     }
   }
-  stop() {
-    if(this.timerId === null) {
-      clearInterval(this.timerId);
-      this.timerId === null;
-    }
+
+  printAlarms() {
+    this.alarmCollection.forEach(item=> console.log(`id: ${item.id} time: ${item.time}`));
+  }
+
+  clearAlarms() {
+    this.stop();
+    this.alarmCollection = [];
+  }
 }
 
-printAlarms() {
-  this.alarmCollection.forEach(item=> console.log(`id: ${item.id} time: ${item.time}`));
-}
-
-clearAlarms() {
-  this.stop();
-  this.alarmCollection = [];
-}
-
-}
